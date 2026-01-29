@@ -7,12 +7,13 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { Map, View } from 'ol'
 import TileLayer from 'ol/layer/Tile'
 import OSM from 'ol/source/OSM'
+import { fromLonLat } from 'ol/proj'
 import 'ol/ol.css'
 
 const props = defineProps({
   center: {
     type: Array,
-    default: () => [0, 0]
+    default: () => [0, 0] // [longitude, latitude]
   },
   zoom: {
     type: Number,
@@ -25,6 +26,9 @@ let map = null
 
 onMounted(() => {
   if (mapContainer.value) {
+    // Transform lat/lon to Web Mercator projection
+    const center = fromLonLat(props.center)
+    
     map = new Map({
       target: mapContainer.value,
       layers: [
@@ -33,7 +37,7 @@ onMounted(() => {
         })
       ],
       view: new View({
-        center: props.center,
+        center: center,
         zoom: props.zoom
       })
     })

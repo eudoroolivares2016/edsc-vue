@@ -4,7 +4,7 @@ import OpenLayersMap from './components/OpenLayersMap.vue'
 
 <template>
   <main>
-    <OpenLayersMap :center="[0, 0]" :zoom="2" />
+    <OpenLayersMap :center="[-122.4194, 37.7749]" :zoom="10" />
   </main>
 </template>
 

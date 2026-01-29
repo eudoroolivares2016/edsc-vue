@@ -1,6 +1,8 @@
-import './assets/main.css'
+import { createApp } from "vue";
+import App from "./App.vue";
+import OpenLayersMap from "vue3-openlayers";
+import "vue3-openlayers/styles.css"; // Import the styles
 
-import { createApp } from 'vue'
-import App from './App.vue'
-
-createApp(App).mount('#app')
+const app = createApp(App);
+app.use(OpenLayersMap);
+app.mount("#app");
